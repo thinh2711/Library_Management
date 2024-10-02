@@ -66,32 +66,32 @@ public class Library {
   }
 
   // Phương thức mượn tài liệu
-  public void borrowDocument(String userName, String title) {
+  public void borrowDocument(String userName, String title, int quantity) {
     User user = findUser(userName);
     Document document = findDocument(title);
 
-    if (user != null && document != null && document.getQuantity() > 0) {
-      user.borrowDocument(document);
-      document.setQuantity(document.getQuantity() - 1);
-      System.out.println(userName + " borrowed " + title + " successfully!");
+    if (user != null && document != null && document.getQuantity() >= quantity) {
+      user.borrowDocument(document, quantity);
+      document.setQuantity(document.getQuantity() - quantity);
+      System.out.println(userName + " borrowed " + quantity + " copies of " + title + " successfully!");
     } else if (user == null) {
       System.out.println("User not found!");
     } else if (document == null) {
       System.out.println("Document not found!");
     } else {
-      System.out.println("No copies available for borrowing.");
+      System.out.println("Not enough copies available for borrowing.");
     }
   }
 
   // Phương thức trả tài liệu
-  public void returnDocument(String userName, String title) {
+  public void returnDocument(String userName, String title, int quantity) {
     User user = findUser(userName);
     Document document = findDocument(title);
 
     if (user != null && document != null) {
-      user.returnDocument(document);
-      document.setQuantity(document.getQuantity() + 1);
-      System.out.println(userName + " returned " + title + " successfully!");
+      user.returnDocument(document, quantity);
+      document.setQuantity(document.getQuantity() + quantity);
+      System.out.println(userName + " returned " + quantity + " copies of " + title + " successfully!");
     } else if (user == null) {
       System.out.println("User not found!");
     } else if (document == null) {

@@ -134,21 +134,23 @@ public class LibraryApp {
   }
 
   private static void borrowDocument(Scanner scanner) {
-    // Logic mượn tài liệu
     System.out.print("Enter user name: ");
     String userName = scanner.next();
     System.out.print("Enter document title to borrow: ");
     String title = scanner.next();
-    library.borrowDocument(userName, title);
+    System.out.print("Enter quantity to borrow: ");
+    int quantity = scanner.nextInt();
+    library.borrowDocument(userName, title, quantity);
   }
 
   private static void returnDocument(Scanner scanner) {
-    // Logic trả tài liệu
     System.out.print("Enter user name: ");
     String userName = scanner.next();
     System.out.print("Enter document title to return: ");
     String title = scanner.next();
-    library.returnDocument(userName, title);
+    System.out.print("Enter quantity to return: ");
+    int quantity = scanner.nextInt();
+    library.returnDocument(userName, title, quantity);
   }
 
   private static void displayUserInfo(Scanner scanner) {
